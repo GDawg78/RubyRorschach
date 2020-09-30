@@ -38,10 +38,13 @@ def evaluate_answer(answer)
     end
 end
 
-
-def take_test
+def next_plate
     system ("clear")
     puts "Please view image and select the best response for you"
+end
+
+def take_test
+    next_plate
     plates1
     answer_one = $prompt.select("Choose", ["A: A Bat", "B: Two people", "C: Pincers of a crab", "D: A pelvis"]) # keep that format
     evaluate_answer(answer_one[0])
@@ -114,7 +117,7 @@ def app_loop
                     highest_score_keys.push(k)
                 end
             end
-            puts 
+            puts high
         end
     end
 end    
