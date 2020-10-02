@@ -1,7 +1,7 @@
 require "tty-prompt"
 require 'colorize'
 require_relative "./models/Plates.rb"
-require_relative "./models/bananna.rb"
+require_relative "./models/bananaman.rb"
 
 class RorschachTest
 
