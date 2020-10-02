@@ -11,3 +11,7 @@ gem "colorize", "~> 0.8.1"
 gem "rspec", "~> 3.9"
 
 gem "tty-prompt", "~> 0.22.0"
+
+gem "pastel", "~> 0.8.0"
+
+gem "bundler", "~> 2.1"

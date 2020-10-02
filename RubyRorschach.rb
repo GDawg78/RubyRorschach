@@ -1,5 +1,6 @@
 require "tty-prompt"
 require 'colorize'
+require 'pastel'
 require_relative "./models/Plates.rb"
 require_relative "./models/bananaman.rb"
 
@@ -20,8 +21,8 @@ class RorschachTest
 
 
     ".colorize(:blue)
-
-    puts "Please select your option from the menu below:"
+    pastel = Pastel.new
+    puts pastel.red.on_green.bold("Please select your option from the menu below:")
 
     @@prompt = TTY::Prompt.new
     @@answer_values = {}

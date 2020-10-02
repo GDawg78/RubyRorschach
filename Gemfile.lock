@@ -34,7 +34,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 2.1)
   colorize (~> 0.8.1)
+  pastel (~> 0.8.0)
   rspec (~> 3.9)
   tty-prompt (~> 0.22.0)
 
