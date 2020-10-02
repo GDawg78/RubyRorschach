@@ -3,6 +3,7 @@ require 'colorize'
 require_relative "./models/Plates.rb"
 require_relative "./models/bananna.rb"
 
+
 $prompt = TTY::Prompt.new
 
 puts "Welcome to the Ruby Rorschach Test\n"
@@ -25,6 +26,9 @@ puts "Please select your option from the menu below:"
 
 $prompt = TTY::Prompt.new
 $answer_values = {}
+$first_name
+$surname
+
 
 def evaluate_answer(answer)
     case answer
@@ -39,49 +43,50 @@ def evaluate_answer(answer)
     end
 end
 
-def next_plate
+def show_next_plate_instruction
     system ("clear")
     puts "Please view image and select the best response for you"
 end
 
 def take_test
-    next_plate
+    system ("clear")
+    show_next_plate_instruction
     plates1
     answer_one = $prompt.select("Choose", ["A: A Bat", "B: Two people", "C: Pincers of a crab", "D: A pelvis"]) # keep that format
     evaluate_answer(answer_one[0])
-    next_plate
+    show_next_plate_instruction
     plates2
     answer_two = $prompt.select("Choose", ["A: Two clowns", "B: A bug somebody stepped on", "C: A bursting bomb", "D: A bloody spinal column"])
     evaluate_answer(answer_two[0])
-    next_plate
+    show_next_plate_instruction
     plates3
     answer_three = $prompt.select("Choose", ["A: Two men", "B: A butterfly", "C: Part of my body", "D: Two birds"])
     evaluate_answer(answer_three[0])
-    next_plate
+    show_next_plate_instruction
     plates4
     answer_four = $prompt.select("Choose", ["A: Head of animal", "B: Lungs and chest", "C: An X-ray picture", "D: A nasty mess"])
     evaluate_answer(answer_four[0])
-    next_plate
+    show_next_plate_instruction
     plates5
     answer_five = $prompt.select("Choose", ["A: A bat or butterfly", "B: An alligator's head", "C: A smashed body", "D: A fan dancer"])
     evaluate_answer(answer_five[0])
-    next_plate
+    show_next_plate_instruction
     plates6
     answer_six = $prompt.select("Choose", ["A: Sex organs", "B: A fur rug", "C: A turtle", "D: Two kings' crowns"])
     evaluate_answer(answer_six[0])
-    next_plate
+    show_next_plate_instruction
     plates7
     answer_seven = $prompt.select("Choose", ["A: Two women talking", "B: Bookends", "C: A map", "D: Lamb's tails, or feathers"])
     evaluate_answer(answer_seven[0])
-    next_plate
+    show_next_plate_instruction
     plates8
     answer_eight = $prompt.select("Choose", ["A: Parts of my body", "B: A horseshoe crab", "C: Fire and ice, life and death", "D: Two animals"])
     evaluate_answer(answer_eight[0])
-    next_plate
+    show_next_plate_instruction
     plates9
     answer_nine = $prompt.select("Choose", ["A: Sea horses, or lobsters", "B: Flowers or underwater vegetation", "C: Deer or horns of a deer", "D: Two people-witches or Santa Clauses"])
     evaluate_answer(answer_nine[0])
-    next_plate
+    show_next_plate_instruction
     plates10
     answer_ten = $prompt.select("Choose", ["A: A Chinese print", "B: Nothing at all", "C: Spider, caterpillars, crabs and insects", "D: Two people"])
     evaluate_answer(answer_ten[0])
@@ -99,10 +104,17 @@ def app_loop
             ░░▒█░░░█▀▀█░█▄▄█░█░▒█░█▀▄░░░█▄▄█░█░░█░█░▒█░▄▄░░░▒█░▄▄░█░░█░█░░█░█░█░█▀▀▄░█▄▄█░█▀▀░▀
             ░░▒█░░░▀░░▀░▀░░▀░▀░░▀░▀░▀░░░▄▄▄▀░░▀▀░░░▀▀▀░▀▀░░░▒█▄▄▀░░▀▀░░░▀▀░░▀▀░░▀▀▀▀░▄▄▄▀░▀▀▀░▄
             "
+            banana_man = BananaMan.new
+            banana_man.go
             exit
         when "Take Test"
+            puts "Please enter your First Name"
+            $first_name = gets.chomp
+            puts "Please enter your Surname"
+            $surname = gets.chomp
+            time_test_start = Time.now
             take_test
-            results_text = ""
+            results_text = time_test_start.to_s
             highest_score_keys = [] #array from hash keys dependent on highest score
             highest_score_value = $answer_values.values.max #grabs the first found highest score... 
             $answer_values.each do |k,v|
@@ -121,7 +133,8 @@ def app_loop
             █   ██████   ███     ████      ████      █   ████   ██      ███
             ███████████████████████████████████████████████████████████████
             " + "\n\n"
-            results_text = results_text + "You scored the higest in" + " #{highest_score_keys.join(",")}".colorize(:red) + "\n\n"
+            results_text = results_text + "#{$first_name} #{$surname} \n\n"
+            results_text = results_text + $first_name + ", You scored the higest in" + " #{highest_score_keys.join(",")}" + "\n\n"
             $answer_values.each do |k,v|
                 results_text = results_text + k + " at " + (v * 10).to_s + "%" + "\n\n"
             end #put in percentage breakdown here
@@ -132,12 +145,13 @@ def app_loop
                 when "Psychopathy"
                     results_text = results_text + "You have shown a majority answers pointing to Psychopathy, you should seek immediate attention from a medical professional" + "\n\n"
                 when "Psychological disturbance"
-                    results_text = results_text + "You are showing signs of Psychological disturbance" + "\n\n"
+                    results_text = results_text + "You are showing signs of Psychological disturbance, whilst this may be minor, it is advised that you seek some treatment in the near future as failure to treat your condition may result in deteriorating mental health." + "\n\n"
                 when "Paranoid"
                     results_text = results_text + "blah blah" + "\n\n"
                 end
             end
             puts results_text
+            File.write("#{$first_name}_#{$surname}.txt", results_text, mode: "a")
         end
     end
 end    
