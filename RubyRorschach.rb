@@ -21,7 +21,8 @@ puts "
 
 ".colorize(:blue)
 
-puts "Please select your option from the menu below: "
+puts "Please select your option from the menu below:"
+
 $prompt = TTY::Prompt.new
 $answer_values = {}
 
@@ -88,7 +89,7 @@ def take_test
 end
 
 def app_loop
-    while true
+    loop do
         $answer_values = {"Common, Well adjusted" => 0, "Psychopathy" => 0, "Psychological disturbance" => 0, "Paranoid" => 0 }
         answer = $prompt.select("Choose your option?", ["Take Test", "Exit"])
         case answer
@@ -101,6 +102,7 @@ def app_loop
             exit
         when "Take Test"
             take_test
+            results_text = ""
             highest_score_keys = [] #array from hash keys dependent on highest score
             highest_score_value = $answer_values.values.max #grabs the first found highest score... 
             $answer_values.each do |k,v|
@@ -108,7 +110,7 @@ def app_loop
                     highest_score_keys.push(k)
                 end
             end
-            puts "
+            results_text = results_text + "
             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
             ░        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   ░░░   ░░░░░░░░░░██
             ▒   ▒▒▒▒   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   ▒▒▒   ▒▒▒▒▒▒▒▒▒▒██
@@ -118,11 +120,24 @@ def app_loop
             ▓   ▓▓▓▓   ▓▓▓  ▓▓▓▓▓▓▓▓▓▓▓▓▓   ▓   ▓▓   ▓   ▓▓▓   ▓ ▓▓▓▓▓   ██
             █   ██████   ███     ████      ████      █   ████   ██      ███
             ███████████████████████████████████████████████████████████████
-            "
-            puts "You scored the higest in" + "#{highest_score_keys} ".colorize(:red)
-            puts "Your breakdown of each result was" #put in percentage breakdown here
-            puts "put reccomendations" #puts reccomendation based on highest score
-            # exports results to *.txt file
+            " + "\n\n"
+            results_text = results_text + "You scored the higest in" + " #{highest_score_keys.join(",")}".colorize(:red) + "\n\n"
+            $answer_values.each do |k,v|
+                results_text = results_text + k + " at " + (v * 10).to_s + "%" + "\n\n"
+            end #put in percentage breakdown here
+            highest_score_keys.each do |k|
+                case k
+                when "Common, Well adjusted"
+                    results_text = results_text + "You have a majority score of Common, Well adjusted, you are in good mental health and have nothing to be worried about" + "\n\n"
+                when "Psychopathy"
+                    results_text = results_text + "You have shown a majority answers pointing to Psychopathy, you should seek immediate attention from a medical professional" + "\n\n"
+                when "Psychological disturbance"
+                    results_text = results_text + "You are showing signs of Psychological disturbance" + "\n\n"
+                when "Paranoid"
+                    results_text = results_text + "blah blah" + "\n\n"
+                end
+            end
+            puts results_text
         end
     end
 end    
