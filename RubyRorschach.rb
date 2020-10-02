@@ -48,52 +48,39 @@ def take_test
     plates1
     answer_one = $prompt.select("Choose", ["A: A Bat", "B: Two people", "C: Pincers of a crab", "D: A pelvis"]) # keep that format
     evaluate_answer(answer_one[0])
-    puts $answer_values["Paranoid"]
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates2
     answer_two = $prompt.select("Choose", ["A: Two clowns", "B: A bug somebody stepped on", "C: A bursting bomb", "D: A bloody spinal column"])
     evaluate_answer(answer_two[0])
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates3
     answer_three = $prompt.select("Choose", ["A: Two men", "B: A butterfly", "C: Part of my body", "D: Two birds"])
     evaluate_answer(answer_three[0])
-    puts $answer_values
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates4
     answer_four = $prompt.select("Choose", ["A: Head of animal", "B: Lungs and chest", "C: An X-ray picture", "D: A nasty mess"])
     evaluate_answer(answer_four[0])
-    puts $answer_values
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates5
     answer_five = $prompt.select("Choose", ["A: A bat or butterfly", "B: An alligator's head", "C: A smashed body", "D: A fan dancer"])
     evaluate_answer(answer_five[0])
-    puts $answer_values
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates6
     answer_six = $prompt.select("Choose", ["A: Sex organs", "B: A fur rug", "C: A turtle", "D: Two kings' crowns"])
     evaluate_answer(answer_six[0])
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates7
     answer_seven = $prompt.select("Choose", ["A: Two women talking", "B: Bookends", "C: A map", "D: Lamb's tails, or feathers"])
     evaluate_answer(answer_seven[0])
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates8
     answer_eight = $prompt.select("Choose", ["A: Parts of my body", "B: A horseshoe crab", "C: Fire and ice, life and death", "D: Two animals"])
     evaluate_answer(answer_eight[0])
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates9
     answer_nine = $prompt.select("Choose", ["A: Sea horses, or lobsters", "B: Flowers or underwater vegetation", "C: Deer or horns of a deer", "D: Two people-witches or Santa Clauses"])
     evaluate_answer(answer_nine[0])
-    system ("clear")
-    puts "Please view image and select the best response for you"
+    next_plate
     plates10
     answer_ten = $prompt.select("Choose", ["A: A Chinese print", "B: Nothing at all", "C: Spider, caterpillars, crabs and insects", "D: Two people"])
     evaluate_answer(answer_ten[0])
@@ -106,7 +93,11 @@ def app_loop
         answer = $prompt.select("Choose your option?", ["Take Test", "Exit"])
         case answer
         when "Exit"
-            puts "thankyou, goodbye"
+            puts "
+            ░▀▀█▀▀░█░░░░█▀▀▄░█▀▀▄░█░▄░░░█░░█░▄▀▀▄░█░▒█░░░░░░▒█▀▀█░▄▀▀▄░▄▀▀▄░█▀▄░█▀▀▄░█░░█░█▀▀░█
+            ░░▒█░░░█▀▀█░█▄▄█░█░▒█░█▀▄░░░█▄▄█░█░░█░█░▒█░▄▄░░░▒█░▄▄░█░░█░█░░█░█░█░█▀▀▄░█▄▄█░█▀▀░▀
+            ░░▒█░░░▀░░▀░▀░░▀░▀░░▀░▀░▀░░░▄▄▄▀░░▀▀░░░▀▀▀░▀▀░░░▒█▄▄▀░░▀▀░░░▀▀░░▀▀░░▀▀▀▀░▄▄▄▀░▀▀▀░▄
+            "
             exit
         when "Take Test"
             take_test
@@ -117,7 +108,21 @@ def app_loop
                     highest_score_keys.push(k)
                 end
             end
-            puts high
+            puts "
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
+            ░        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   ░░░   ░░░░░░░░░░██
+            ▒   ▒▒▒▒   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒   ▒▒▒   ▒▒▒▒▒▒▒▒▒▒██
+            ▒   ▒▒▒▒   ▒▒▒▒▒▒   ▒▒▒▒▒▒     ▒▒   ▒▒   ▒   ▒    ▒  ▒▒     ▒██
+            ▓  ▓   ▓▓▓▓▓▓▓▓  ▓▓▓   ▓▓   ▓▓▓▓▓   ▓▓   ▓   ▓▓▓   ▓▓▓   ▓▓▓▓██
+            ▓   ▓▓   ▓▓▓▓▓         ▓▓▓▓    ▓▓   ▓▓   ▓   ▓▓▓   ▓▓▓▓▓    ▓██
+            ▓   ▓▓▓▓   ▓▓▓  ▓▓▓▓▓▓▓▓▓▓▓▓▓   ▓   ▓▓   ▓   ▓▓▓   ▓ ▓▓▓▓▓   ██
+            █   ██████   ███     ████      ████      █   ████   ██      ███
+            ███████████████████████████████████████████████████████████████
+            "
+            puts "You scored the higest in" + "#{highest_score_keys} ".colorize(:red)
+            puts "Your breakdown of each result was" #put in percentage breakdown here
+            puts "put reccomendations" #puts reccomendation based on highest score
+            # exports results to *.txt file
         end
     end
 end    
