@@ -1,6 +1,7 @@
 require "tty-prompt"
 require 'colorize'
 require 'pastel'
+require 'rainbow'
 require_relative "./models/Plates.rb"
 require_relative "./models/bananaman.rb"
 
@@ -8,15 +9,15 @@ class RorschachTest
 
     puts "Welcome to the Ruby Rorschach Test\n"
     puts "
-    ▄▄                                                                ▄▄                       ▄▄        
-    ▀███▀▀▀██▄             ▄██                     ▀███▀▀▀██▄                                ███                      ███        
+                           ▄▄                                                               ▄▄                       ▄▄        
+   ▀███▀▀▀██▄             ▄██                     ▀███▀▀▀██▄                                ███                      ███        
     ██   ▀██▄             ██                       ██   ▀██▄                                ██                       ██        
     ██   ▄██ ▀███  ▀███   ██▄████▄ ▀██▀   ▀██▀     ██   ▄██   ▄██▀██▄▀███▄███ ▄██▀███▄██▀██ ███████▄  ▄█▀██▄  ▄██▀██ ███████▄  
     ███████    ██    ██   ██    ▀██  ██   ▄█       ███████   ██▀   ▀██ ██▀ ▀▀ ██   ▀▀█▀  ██ ██    ██ ██   ██ ██▀  ██ ██    ██  
     ██  ██▄    ██    ██   ██     ██   ██ ▄█        ██  ██▄   ██     ██ ██     ▀█████▄█      ██    ██  ▄█████ ██      ██    ██  
     ██   ▀██▄  ██    ██   ██▄   ▄██    ███         ██   ▀██▄ ██▄   ▄██ ██     █▄   ███▄    ▄██    ██ ██   ██ ██▄    ▄██    ██  
-    ▄████▄ ▄███▄ ▀████▀███▄ █▀█████▀     ▄█        ▄████▄ ▄███▄ ▀█████▀▄████▄   ██████▀█████▀████  ████▄████▀██▄█████▀████  ████▄
-                                    ▄█                                                                                        
+  ▄████▄ ▄███▄ ▀████▀███▄ █▀█████▀     ▄█        ▄████▄ ▄███▄ ▀█████▀▄████▄   ██████▀█████▀████  ████▄████▀██▄█████▀████  ████▄
+                                      ▄█                                                                                        
                                     ██▀                                                                                         
 
 
@@ -45,7 +46,7 @@ class RorschachTest
 
     def show_next_plate_instruction
         system ("clear")
-        puts "Please view image and select the best response for you"
+        puts Rainbow("Please view image and select the best response for you").bg(:magenta)
     end
 
     def take_test
@@ -108,9 +109,9 @@ class RorschachTest
                 exit
             when "Take Test"
                 puts "Please enter your First Name"
-                @@first = gets.chomp
+                @@first = gets.chomp.downcase.capitalize
                 puts "Please enter your Surname"
-                @@surname = gets.chomp
+                @@surname = gets.chomp.downcase.capitalize
                 time_test_start = Time.now
                 take_test
                 results_text = time_test_start.to_s
