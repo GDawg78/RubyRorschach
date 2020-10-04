@@ -146,11 +146,13 @@ class RorschachTest
                     when "Psychological disturbance"
                         results_text = results_text + "You are showing signs of Psychological disturbance, whilst this may be minor, it is advised that you seek some treatment in the near future as failure to treat your condition may result in deteriorating mental health." + "\n\n"
                     when "Paranoid"
-                        results_text = results_text + "blah blah" + "\n\n"
+                        results_text = results_text + "You are showing signs of Paranoia, its important that you are objective about how you percive situations and you should be seeking psychological counciling as soon as possible."  + "\n\n"
                     end
                 end
-                puts results_text
+                puts results_text+ "\n\n"
                 File.write("#{@@first}_#{@@surname}.txt", results_text, mode: "a")
+                puts "Your results have been saved to a text file within the directory the application was run from, you can run the tests as many times as you see fit, and share the text file with anyone you wish. Any tests you take, so long as your name is entered the same, will be appended to, and will have date and time stamps, so you know what your mental perception was like during that time" + "\n\n"
+
             end
         end
     end    

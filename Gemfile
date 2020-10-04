@@ -15,3 +15,5 @@ gem "tty-prompt", "~> 0.22.0"
 gem "pastel", "~> 0.8.0"
 
 gem "bundler", "~> 2.1"
+
+gem "rainbow", "~> 3.0"
